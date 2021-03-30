@@ -1,51 +1,40 @@
-function elementAdd(){
-let ul=document.createElement('p');
-  document.querySelector('#header').appendChild(ul);
-}
 
 const inhalt = 
 `<div id="header">
 <h1>ToDo List</h1>
 <input type="text" class="Input" placeholder="Enter WhatToDo...">
-<span class="addBtn">Send it!</span>
+<span class="addBtn">Send it RFN!</span>
 </div>
-<ul id="myUL">
+<ul class="myUL">
 `;
-
 
 document.body.innerHTML=inhalt;
 
-
-
-function addTask(name, completed) {
-  let p = document.createElement('p');
-  p.textContent = name;
-  document.querySelector('#myUL').appendChild(p);
-
-  
-}
-
-function add(taskContent, status) {
+function addNewTask(taskContent, status) {
   this.taskContent=taskContent;
-  this.status=status;  
+  this.status='true';  
 }
 
-let tasks =[];
-let newTask=new add('testing',true);
-tasks[tasks.length]=newTask;
-
-
-
+const tasks =[]; //globaly declared array
 
 document.querySelector('.addBtn').addEventListener('click',()=>{
- // console.log('hodnota p',document.querySelector('.Input').value);
-  let newTask=new add(document.querySelector('.Input').value,true);
-tasks[tasks.length]=newTask;
+  let newTask=new addNewTask(document.querySelector('.Input').value,true);
+  tasks[tasks.length]=newTask;
+  showActiveTasks();
 
 });
 
-console.log(tasks);
 
 
- //addTask('dodelani neceho', false);
- 
+
+let showActiveTasks = ()=>{
+  const taskNode = document.querySelector('.myUL');
+  const activeTasksArray = tasks.filter((option)=>option.status==='true');
+  taskNode.innerHTML=''; // i know it is not good, but its simple
+  activeTasksArray.forEach((option)=>{
+    let ToDoItem = document.createElement('li');
+    ToDoItem.textContent=option.taskContent;
+    taskNode.appendChild(ToDoItem);
+  })
+}
+
