@@ -11,13 +11,13 @@ document.body.innerHTML = inhalt;
 
 function addNewTask(taskContent, status) {
     this.taskContent = taskContent;
-    this.status = 'true';
+    this.status = status;
 }
 
 const tasks = []; //globaly declared array
 
 document.querySelector('.addBtn').addEventListener('click', () => {
-    let newTask = new addNewTask(document.querySelector('.Input').value, true);
+    let newTask = new addNewTask(document.querySelector('.Input').value, 'true');
     tasks[tasks.length] = newTask;
     showActiveTasks();
 
