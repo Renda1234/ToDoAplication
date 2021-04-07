@@ -7,20 +7,40 @@ const inhalt =
 <ul class="myUL">
 `;
 
-document.body.innerHTML = inhalt;
+const basicHtml =
+    `<div id="header">
+<h1>ToDo List</h1>
+<input type="text" class="Input" placeholder="Enter your task here and pres Enter ...">
+</div>
+<ul class="myUL">
+`;
 
-function addNewTask(taskContent, status) {
+
+
+
+document.body.innerHTML = basicHtml;
+
+function NewTask(taskContent, status) {
     this.taskContent = taskContent;
     this.status = status;
 }
 
 const tasks = []; //globaly declared array
 
-document.querySelector('.addBtn').addEventListener('click', () => {
-    let newTask = new addNewTask(document.querySelector('.Input').value, 'true');
-    tasks[tasks.length] = newTask;
-    showActiveTasks();
+// document.querySelector('.addBtn').addEventListener('click', () => {
+//     let newTask = new addNewTask(document.querySelector('.Input').value, 'true');
+//     tasks[tasks.length] = newTask;
+//     showActiveTasks();
 
+// });
+
+document.querySelector('.Input').addEventListener('keyup', (event) => {
+    if (event.key === "Enter") {
+        let newTask = new NewTask(document.querySelector('.Input').value, 'true');
+        tasks[tasks.length] = newTask;
+        console.log('tasks:', tasks);
+        showActiveTasks();
+    }
 });
 
 
